@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curso de Bases de Datos</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <section id="course-content">
+      <h1>Curso de Bases de Datos</h1>
+      <p>
+        Las bases de datos son sistemas que permiten almacenar y gestionar grandes volúmenes de información de manera estructurada.
+        Una base de datos <strong>relacional</strong> organiza los datos en tablas con filas y columnas.
+      </p>
+      <p>
+        El lenguaje más común para interactuar con bases de datos relacionales es <strong>SQL</strong> (Structured Query Language), que permite realizar consultas como <code>SELECT</code> para recuperar información.
+      </p>
+      <p>
+        Bases de datos como MySQL soportan el cumplimiento de las propiedades <strong>ACID</strong> (Atomicidad, Consistencia, Aislamiento, Durabilidad), que garantizan transacciones seguras.
+        Las bases de datos <strong>NoSQL</strong>, por otro lado, son ideales para almacenar datos no estructurados como documentos JSON.
+      </p>
+      <img src="Contenido/Curso2.png" alt="Bases de Datos">
+    </section>
+
+    <section id="quiz-section">
+      <h2>Evaluación</h2>
+      <form id="quiz-form">
+        <div>
+          <p>1. ¿Qué es una base de datos relacional?</p>
+          <input type="radio" name="question1" value="correct"> Una base que organiza datos en tablas<br>
+          <input type="radio" name="question1" value="wrong"> Una base que organiza datos en gráficos<br>
+        </div>
+        <div>
+          <p>2. ¿Qué lenguaje se usa para interactuar con bases de datos relacionales?</p>
+          <input type="radio" name="question2" value="correct"> SQL<br>
+          <input type="radio" name="question2" value="wrong"> JavaScript<br>
+        </div>
+        <div>
+          <p>3. ¿Qué comando SQL se usa para obtener datos de una tabla?</p>
+          <select name="question3">
+            <option value="correct">SELECT</option>
+            <option value="wrong">INSERT</option>
+            <option value="wrong">DELETE</option>
+          </select>
+        </div>
+        <div>
+          <p>4. ¿Qué significa el acrónimo ACID en bases de datos?</p>
+          <input type="checkbox" name="question4" value="correct"> Atomicidad<br>
+          <input type="checkbox" name="question4" value="correct"> Consistencia<br>
+          <input type="checkbox" name="question4" value="correct"> Aislamiento<br>
+          <input type="checkbox" name="question4" value="wrong"> Decodificación<br>
+        </div>
+        <div>
+          <p>5. ¿Qué tipo de base de datos organiza datos en documentos JSON?</p>
+          <input type="radio" name="question5" value="wrong"> Relacional<br>
+          <input type="radio" name="question5" value="correct"> NoSQL<br>
+        </div>
+        <button type="button" id="submit-quiz">Enviar Respuestas</button>
+      </form>
+      <p id="quiz-result"></p>
+    </section>
+  </div>
+
+  <script>
+    const submitQuiz = document.getElementById('submit-quiz');
+    submitQuiz.addEventListener('click', () => {
+      const answers = {
+        question1: 'correct',
+        question2: 'correct',
+        question3: 'correct',
+        question4: ['correct', 'correct', 'correct'],
+        question5: 'correct',
+      };
+
+      let score = 0;
+
+      const question1 = document.querySelector('input[name="question1"]:checked');
+      if (question1 && question1.value === answers.question1) score++;
+
+      const question2 = document.querySelector('input[name="question2"]:checked');
+      if (question2 && question2.value === answers.question2) score++;
+
+      const question3 = document.querySelector('select[name="question3"]').value;
+      if (question3 === answers.question3) score++;
+
+      const question4 = Array.from(document.querySelectorAll('input[name="question4"]:checked'))
+        .map(input => input.value);
+      if (JSON.stringify(question4) === JSON.stringify(answers.question4)) score++;
+
+      const question5 = document.querySelector('input[name="question5"]:checked');
+      if (question5 && question5.value === answers.question5) score++;
+
+      const percentage = (score / 5) * 100;
+      document.getElementById('quiz-result').textContent = `Tu calificación es: ${percentage}%`;
+    });
+  </script>
+       <h5 >
+        By Nills Berducido
+      </h5>
+</body>
+</html>

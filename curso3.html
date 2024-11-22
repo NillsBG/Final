@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curso de Desarrollo Móvil</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <section id="course-content">
+      <h1>Curso de Desarrollo Móvil</h1>
+      <p>
+        El desarrollo móvil consiste en crear aplicaciones para dispositivos como smartphones y tablets.
+        Las plataformas más populares son Android, que utiliza <strong>Kotlin</strong> y Java, e iOS, que utiliza <strong>Swift</strong>.
+      </p>
+      <p>
+        Para desarrollar aplicaciones que funcionen en múltiples plataformas, se puede usar <strong>Flutter</strong>, un framework que utiliza el lenguaje <strong>Dart</strong>.
+      </p>
+      <p>
+        Android es un sistema operativo de código abierto, mientras que iOS es propietario. Ambas plataformas ofrecen herramientas robustas para los desarrolladores.
+      </p>
+      <img src="Contenido/Curso3.png" alt="Desarrollo Móvil">
+    </section>
+
+    <section id="quiz-section">
+      <h2>Evaluación</h2>
+      <form id="quiz-form">
+        <div>
+          <p>1. ¿Qué lenguaje se utiliza para desarrollar aplicaciones en Android?</p>
+          <input type="radio" name="question1" value="correct"> Kotlin<br>
+          <input type="radio" name="question1" value="wrong"> Swift<br>
+        </div>
+        <div>
+          <p>2. ¿Qué lenguaje se utiliza para desarrollar aplicaciones en iOS?</p>
+          <input type="radio" name="question2" value="correct"> Swift<br>
+          <input type="radio" name="question2" value="wrong"> Kotlin<br>
+        </div>
+        <div>
+          <p>3. ¿Qué herramienta se usa para desarrollar apps en múltiples plataformas?</p>
+          <select name="question3">
+            <option value="wrong">MySQL</option>
+            <option value="correct">Flutter</option>
+            <option value="wrong">Kubernetes</option>
+          </select>
+        </div>
+        <div>
+          <p>4. ¿Qué sistema operativo es de código abierto?</p>
+          <input type="radio" name="question4" value="correct"> Android<br>
+          <input type="radio" name="question4" value="wrong"> iOS<br>
+        </div>
+        <div>
+          <p>5. ¿Qué lenguaje se usa en Flutter?</p>
+          <input type="radio" name="question5" value="correct"> Dart<br>
+          <input type="radio" name="question5" value="wrong"> Python<br>
+        </div>
+        <button type="button" id="submit-quiz">Enviar Respuestas</button>
+      </form>
+      <p id="quiz-result"></p>
+    </section>
+  </div>
+
+  <script>
+    const submitQuiz = document.getElementById('submit-quiz');
+    submitQuiz.addEventListener('click', () => {
+      const answers = {
+        question1: 'correct',
+        question2: 'correct',
+        question3: 'correct',
+        question4: 'correct',
+        question5: 'correct',
+      };
+
+      let score = 0;
+
+      const question1 = document.querySelector('input[name="question1"]:checked');
+      if (question1 && question1.value === answers.question1) score++;
+
+      const question2 = document.querySelector('input[name="question2"]:checked');
+      if (question2 && question2.value === answers.question2) score++;
+
+      const question3 = document.querySelector('select[name="question3"]').value;
+      if (question3 === answers.question3) score++;
+
+      const question4 = document.querySelector('input[name="question4"]:checked');
+      if (question4 && question4.value === answers.question4) score++;
+
+      const question5 = document.querySelector('input[name="question5"]:checked');
+      if (question5 && question5.value === answers.question5) score++;
+
+      const percentage = (score / 5) * 100;
+      document.getElementById('quiz-result').textContent = `Tu calificación es: ${percentage}%`;
+    });
+  </script>
+       <h5 >
+        By Nills Berducido
+      </h5>
+</body>
+</html>

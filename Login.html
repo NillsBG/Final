@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio de Sesión</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Acceso al Curso</h1>
+    <form id="login-form">
+      <label for="username">Usuario:</label>
+      <input type="text" id="username" placeholder="Usuario" required>
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" placeholder="Contraseña" required>
+      <button type="button" id="login-button">Ingresar</button>
+    </form>
+    <p id="login-message" class="error"></p>
+  </div>
+  <script>
+    const loginButton = document.getElementById('login-button');
+    loginButton.addEventListener('click', () => {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const params = new URLSearchParams(window.location.search);
+      const curso = params.get('curso');
+
+      if (username === 'alumno' && password === '2024') {
+        if (curso === 'programacion_web') window.location.href = 'curso1.html';
+        if (curso === 'bases_datos') window.location.href = 'curso2.html';
+        if (curso === 'desarrollo_movil') window.location.href = 'curso3.html';
+      } else {
+        document.getElementById('login-message').textContent = 'Usuario o contraseña incorrectos.';
+      }
+    });
+  </script>
+</body>
+</html>

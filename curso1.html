@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curso de Programación Web</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <section id="course-content">
+      <h1>Curso de Programación Web</h1>
+      <p>
+        La programación web es una disciplina que utiliza lenguajes como HTML, CSS y JavaScript para construir páginas y aplicaciones web interactivas.
+        <strong>HTML</strong> (HyperText Markup Language) se usa para definir la estructura de las páginas web. Por ejemplo, los encabezados, párrafos e imágenes.
+      </p>
+      <p>
+        <strong>CSS</strong> (Cascading Style Sheets) se utiliza para estilizar la presentación de las páginas web, como colores, tipografías y diseños.
+        JavaScript permite añadir interactividad, como formularios dinámicos, botones y animaciones.
+      </p>
+      <p>
+        Para mostrar una imagen en HTML, usamos la etiqueta <code>&lt;img&gt;</code>, mientras que para definir colores de fondo usamos la propiedad CSS <code>background-color</code>.
+      </p>
+      <img src="Contenido/Curso1.png" alt="Introducción a Programación Web">
+    </section>
+
+    <section id="quiz-section">
+      <h2>Evaluación</h2>
+      <form id="quiz-form">
+        <div>
+          <p>1. ¿Qué significa HTML?</p>
+          <input type="radio" name="question1" value="correct"> HyperText Markup Language<br>
+          <input type="radio" name="question1" value="wrong"> HyperTransfer Markup Language<br>
+        </div>
+        <div>
+          <p>2. ¿Cuál de las siguientes es una hoja de estilos?</p>
+          <input type="radio" name="question2" value="wrong"> JavaScript<br>
+          <input type="radio" name="question2" value="correct"> CSS<br>
+        </div>
+        <div>
+          <p>3. ¿Qué etiqueta HTML se usa para agregar una imagen?</p>
+          <select name="question3">
+            <option value="correct">&lt;img&gt;</option>
+            <option value="wrong">&lt;video&gt;</option>
+            <option value="wrong">&lt;src&gt;</option>
+          </select>
+        </div>
+        <div>
+          <p>4. ¿Qué propiedad en CSS define el color de fondo?</p>
+          <input type="radio" name="question4" value="correct"> background-color<br>
+          <input type="radio" name="question4" value="wrong"> color<br>
+        </div>
+        <div>
+          <p>5. ¿Qué lenguaje se usa para la interactividad en la web?</p>
+          <input type="checkbox" name="question5" value="correct"> JavaScript<br>
+          <input type="checkbox" name="question5" value="wrong"> Python<br>
+        </div>
+        <button type="button" id="submit-quiz">Enviar Respuestas</button>
+      </form>
+      <p id="quiz-result"></p>
+    </section>
+  </div>
+
+  <script>
+    // Validación y calificación de preguntas
+    const submitQuiz = document.getElementById('submit-quiz');
+    submitQuiz.addEventListener('click', () => {
+      const answers = {
+        question1: 'correct',
+        question2: 'correct',
+        question3: 'correct',
+        question4: 'correct',
+        question5: ['correct'],
+      };
+
+      let score = 0;
+
+      // Pregunta 1
+      const question1 = document.querySelector('input[name="question1"]:checked');
+      if (question1 && question1.value === answers.question1) score++;
+
+      // Pregunta 2
+      const question2 = document.querySelector('input[name="question2"]:checked');
+      if (question2 && question2.value === answers.question2) score++;
+
+      // Pregunta 3
+      const question3 = document.querySelector('select[name="question3"]').value;
+      if (question3 === answers.question3) score++;
+
+      // Pregunta 4
+      const question4 = document.querySelector('input[name="question4"]:checked');
+      if (question4 && question4.value === answers.question4) score++;
+
+      // Pregunta 5
+      const question5 = Array.from(document.querySelectorAll('input[name="question5"]:checked'))
+        .map(input => input.value);
+      if (JSON.stringify(question5) === JSON.stringify(answers.question5)) score++;
+
+      const percentage = (score / 5) * 100;
+      document.getElementById('quiz-result').textContent = `Tu calificación es: ${percentage}%`;
+    });
+  </script>
+     <h5 >
+        By Nills Berducido
+      </h5>
+</body>
+</html>
